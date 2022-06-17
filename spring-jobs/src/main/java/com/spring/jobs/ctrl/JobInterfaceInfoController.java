@@ -15,7 +15,7 @@ import com.spring.jobs.config.ScheduledTask;
 import com.spring.jobs.service.CronTaskRegistrar;
 
 /**
-
+ * task ctrl api
  */
 @Controller
 @RequestMapping("/api")
@@ -26,6 +26,9 @@ public class JobInterfaceInfoController {
 
 	private Runnable task;
 
+	/**
+        *  new task
+        */
 	@ResponseBody
 	@CrossOrigin(value = "*", allowCredentials = "true")
 	@RequestMapping(value = "add", produces = "application/json; charset=utf-8")
@@ -36,6 +39,9 @@ public class JobInterfaceInfoController {
 		return "ok";
 	}
 
+	/**
+        *  del task
+        */
 	@ResponseBody
 	@CrossOrigin(value = "*", allowCredentials = "true")
 	@RequestMapping(value = "del", produces = "application/json; charset=utf-8")
@@ -45,6 +51,9 @@ public class JobInterfaceInfoController {
 		return "ok";
 	}
 
+	/**
+        *  del task
+        */
 	@ResponseBody
 	@CrossOrigin(value = "*", allowCredentials = "true")
 	@RequestMapping(value = "update", produces = "application/json; charset=utf-8")
@@ -55,6 +64,10 @@ public class JobInterfaceInfoController {
 		return "ok";
 	}
 
+	
+	/**
+        *  query task
+        */
 	@ResponseBody
 	@CrossOrigin(value = "*", allowCredentials = "true")
 	@RequestMapping(value = "query", produces = "application/json; charset=utf-8")
@@ -64,6 +77,10 @@ public class JobInterfaceInfoController {
 		return result;
 	}
 	
+	
+	/**
+        *  save task & restart task
+        */
 	@ResponseBody
 	@CrossOrigin(value = "*", allowCredentials = "true")
 	@RequestMapping(value = "startFromMemory", produces = "application/json; charset=utf-8")
@@ -80,12 +97,16 @@ public class JobInterfaceInfoController {
 		return "ok";
 	}
 
+	
+	/**
+        *  do your bussiness
+        */
 	private Runnable doTask(String id) {
 		task = new Runnable() {
 
 			@Override
 			public void run() {
-				//can retry in this
+				//retry in this
 				System.out.println(id + ":" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 			}
 		};
